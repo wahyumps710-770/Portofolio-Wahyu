@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="id" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wahyu Moch Panca Swadana - Portofolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        accent: '#06b6d4',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Glassmorphism Styles */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2563eb;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
+        }
+
+        /* Gradient Glow Background */
+        .glow-bg {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        /* Typing Effect Cursor */
+        .cursor-blink {
+            animation: blink 0.8s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 relative overflow-x-hidden selection:bg-blue-600 selection:text-white">
+
+    <!-- Glowing Decorative Orbs -->
+    <div class="glow-bg w-72 h-72 bg-blue-600 top-10 left-[-50px]"></div>
+    <div class="glow-bg w-96 h-96 bg-cyan-500 top-[30%] right-[-100px]"></div>
+    <div class="glow-bg w-80 h-80 bg-indigo-600 bottom-[20%] left-[-80px]"></div>
+
+    <!-- NAVBAR -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-14 glass rounded-2xl px-5 shadow-lg">
+                <!-- Logo -->
+                <a href="#beranda" class="flex items-center space-x-2 font-bold text-xl tracking-tight group">
+                    <span class="bg-blue-600 text-white w-9 h-9 flex items-center justify-center rounded-xl shadow-md group-hover:scale-105 transition-transform">W</span>
+                    <span class="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent font-extrabold">Wahyu.dev</span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-6 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                    <a href="#beranda" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Beranda</a>
+                    <a href="#tentang" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Tentang Saya</a>
+                    <a href="#pendidikan" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Pendidikan</a>
+                    <a href="#pengalaman" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Pengalaman</a>
+                    <a href="#keahlian" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Keahlian</a>
+                    <a href="#kontak" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Kontak</a>
+                </div>
+
+                <!-- Actions: Dark Mode Toggle & Mobile Menu Btn -->
+                <div class="flex items-center space-x-3">
+                    <button id="themeToggle" aria-label="Toggle Theme" class="p-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-amber-400 hover:scale-110 transition-all">
+                        <i id="themeIcon" class="fas fa-moon text-lg"></i>
+                    </button>
+                    <a href="#kontak" class="hidden sm:inline-flex items-center px-4 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-md hover:shadow-blue-500/30 transition-all">
+                        Hubungi Saya
+                    </a>
+                    <button id="mobileMenuBtn" aria-label="Toggle Navigation Menu" class="md:hidden p-2 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-800">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden md:hidden max-w-7xl mx-auto px-4 mt-2">
+            <div class="glass rounded-2xl p-4 space-y-3 flex flex-col font-medium shadow-xl">
+                <a href="#beranda" class="mobile-link py-2 px-3 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600">Beranda</a>
+                <a href="#tentang" class="mobile-link py-2 px-3 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600">Tentang Saya</a>
+                <a href="#pendidikan" class="mobile-link py-2 px-3 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600">Pendidikan</a>
+                <a href="#pengalaman" class="mobile-link py-2 px-3 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600">Pengalaman</a>
+                <a href="#keahlian" class="mobile-link py-2 px-3 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600">Keahlian</a>
+                <a href="#kontak" class="mobile-link py-2 px-3 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600">Kontak</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="beranda" class="pt-32 pb-20 md:pt-40 md:pb-28 min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Text Area -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs sm:text-sm font-semibold">
+                        <span class="flex h-2 w-2 rounded-full bg-blue-500 animate-ping"></span>
+                        Mahasiswa Universitas Negeri Surabaya
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Halo, Saya <br class="hidden sm:inline">
+                        <span class="bg-gradient-to-r from-blue-600 via-cyan-500 to-indigo-500 bg-clip-text text-transparent">
+                            Wahyu Moch Panca
+                        </span>
+                    </h1>
+
+                    <div class="text-lg sm:text-xl font-medium text-slate-600 dark:text-slate-300 h-12">
+                        <span id="typingText"></span><span class="cursor-blink text-blue-600">|</span>
+                    </div>
+
+                    <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        Mahasiswa S1 Pendidikan Teknologi Informasi UNESA asal Tuban, Jawa Timur. Berdedikasi tinggi dalam mengeksplorasi dunia ilmu komputer, teknologi pendidikan, serta aktif dalam kegiatan kepemudaan dan seni budaya lokal.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#kontak" class="px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-2">
+                            <i class="fas fa-paper-plane"></i> Hubungi Saya
+                        </a>
+                        <button onclick="downloadCV()" class="px-6 py-3.5 glass hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 font-semibold rounded-xl transition-all duration-200 flex items-center gap-2">
+                            <i class="fas fa-download text-blue-500"></i> Unduh CV (PDF)
+                        </button>
+                    </div>
+
+                    <!-- Social Media Links -->
+                    <div class="flex items-center justify-center lg:justify-start gap-4 pt-4 text-slate-600 dark:text-slate-400">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Sosial Media:</span>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 rounded-xl glass flex items-center justify-center hover:text-blue-500 hover:scale-110 transition-all"><i class="fab fa-instagram text-lg"></i></a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-10 h-10 rounded-xl glass flex items-center justify-center hover:text-blue-500 hover:scale-110 transition-all"><i class="fab fa-linkedin-in text-lg"></i></a>
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="w-10 h-10 rounded-xl glass flex items-center justify-center hover:text-blue-500 hover:scale-110 transition-all"><i class="fab fa-github text-lg"></i></a>
+                    </div>
+                </div>
+
+                <!-- Avatar / Visual Card -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96">
+                        <!-- Outer Decorative Frame -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-3xl rotate-6 blur-lg opacity-40"></div>
+                        <div class="relative w-full h-full glass rounded-3xl p-6 border border-white/20 shadow-2xl flex flex-col justify-between overflow-hidden">
+                            <!-- Top Card Info -->
+                            <div class="flex items-center justify-between">
+                                <span class="px-3 py-1 bg-blue-100 dark:bg-blue-950/80 text-blue-600 dark:text-blue-300 text-xs font-bold rounded-lg border border-blue-500/20">
+                                    UNESA 2026
+                                </span>
+                                <i class="fas fa-graduation-cap text-2xl text-blue-500"></i>
+                            </div>
+
+                            <!-- Center Avatar Placeholder / Graphic -->
+                            <div class="my-auto text-center py-6">
+                                <img src="profil.jpeg" alt="" class="w-24 h-24 sm:w-28 sm:h-28 mx-auto rounded-full bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center text-white text-4xl font-extrabold shadow-xl ring-4 ring-white/20 mb-3">
+                                <h2 class="font-bold text-lg text-slate-900 dark:text-white">Wahyu M. Panca S.</h2>
+                                <p class="text-xs text-blue-500 dark:text-blue-400 font-medium">S1 Pendidikan Teknologi Informasi</p>
+                            </div>
+
+                            <!-- Card Bottom Stats -->
+                            <div class="grid grid-cols-2 gap-2 pt-3 border-t border-slate-200 dark:border-slate-800 text-center text-xs">
+                                <div class="bg-slate-100 dark:bg-slate-900/60 p-2 rounded-xl">
+                                    <span class="block font-bold text-slate-900 dark:text-white text-sm">Tuban</span>
+                                    <span class="text-slate-400">Kota Asal</span>
+                                </div>
+                                <div class="bg-slate-100 dark:bg-slate-900/60 p-2 rounded-xl">
+                                    <span class="block font-bold text-slate-900 dark:text-white text-sm">Surabaya</span>
+                                    <span class="text-slate-400">Domisili Studi</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION (Tentang Saya) -->
+    <section id="tentang" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-2">Profil Diri</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold tracking-tight">Mengenal Lebih Dekat tentang Wahyu</p>
+                <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                <!-- Bio Description -->
+                <div class="lg:col-span-7 glass rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-slate-200 dark:border-slate-800">
+                    <div>
+                        <h3 class="text-xl sm:text-2xl font-bold mb-4 text-slate-900 dark:text-white flex items-center gap-3">
+                            <i class="fas fa-user-astronaut text-blue-500"></i> Ringkasan Profil
+                        </h3>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-4 text-sm sm:text-base">
+                            Halo! Nama lengkap saya adalah <strong class="text-blue-600 dark:text-blue-400">Wahyu Moch Panca Swadana</strong>, biasa dipanggil <strong class="text-blue-600 dark:text-blue-400">Wahyu</strong>. Saya lahir di kota Tuban, Jawa Timur pada tanggal 07 Oktober 2007. 
+                        </p>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6 text-sm sm:text-base">
+                            Saat ini saya sedang melanjutkan studi jenjang Pendidikan Tinggi di **Universitas Negeri Surabaya (UNESA)** pada program studi **S1 Pendidikan Teknologi Informasi**. Kombinasi antara dunia pendidikan dan ilmu komputer memberikan saya perspektif luas dalam memanfaatkan teknologi untuk pembelajaran digital, pengembangan perangkat lunak, serta manajemen sistem informasi.
+                        </p>
+                    </div>
+
+                    <!-- Highlight Badges -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+                        <div class="p-3 bg-blue-50 dark:bg-slate-900 rounded-xl text-center">
+                            <i class="fas fa-laptop-code text-blue-600 text-xl mb-1"></i>
+                            <div class="text-xs font-bold text-slate-800 dark:text-slate-200">Tech Enthusiast</div>
+                        </div>
+                        <div class="p-3 bg-cyan-50 dark:bg-slate-900 rounded-xl text-center">
+                            <i class="fas fa-drum text-cyan-600 text-xl mb-1"></i>
+                            <div class="text-xs font-bold text-slate-800 dark:text-slate-200">Seni Karawitan</div>
+                        </div>
+                        <div class="p-3 bg-indigo-50 dark:bg-slate-900 rounded-xl text-center col-span-2 sm:col-span-1">
+                            <i class="fas fa-volleyball-ball text-indigo-600 text-xl mb-1"></i>
+                            <div class="text-xs font-bold text-slate-800 dark:text-slate-200">Atlet Voli Desa</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Data Card -->
+                <div class="lg:col-span-5 glass rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 flex flex-col justify-center">
+                    <h3 class="text-xl font-bold mb-6 text-slate-900 dark:text-white flex items-center gap-3">
+                        <i class="fas fa-address-card text-blue-500"></i> Biodata Lengkap
+                    </h3>
+                    
+                    <div class="space-y-4 text-sm">
+                        <div class="flex justify-between items-center p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl">
+                            <span class="text-slate-500 dark:text-slate-400 font-medium">Nama Lengkap</span>
+                            <span class="font-bold text-slate-800 dark:text-slate-100 text-right">Wahyu Moch Panca S.</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl">
+                            <span class="text-slate-500 dark:text-slate-400 font-medium">Nama Panggilan</span>
+                            <span class="font-bold text-blue-600 dark:text-blue-400">Wahyu</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl">
+                            <span class="text-slate-500 dark:text-slate-400 font-medium">Tempat Lahir</span>
+                            <span class="font-bold text-slate-800 dark:text-slate-100">Kota Tuban, Jatim</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl">
+                            <span class="text-slate-500 dark:text-slate-400 font-medium">Tanggal Lahir</span>
+                            <span class="font-bold text-slate-800 dark:text-slate-100">07 Oktober 2007</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl">
+                            <span class="text-slate-500 dark:text-slate-400 font-medium">Program Studi</span>
+                            <span class="font-bold text-blue-600 dark:text-blue-400">S1 Pend. Teknologi Informasi</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl">
+                            <span class="text-slate-500 dark:text-slate-400 font-medium">Perguruan Tinggi</span>
+                            <span class="font-bold text-slate-800 dark:text-slate-100">Univ. Negeri Surabaya</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION SECTION (Pendidikan) -->
+    <section id="pendidikan" class="py-20 relative bg-slate-100/50 dark:bg-slate-900/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-2">Jejak Akademis</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold tracking-tight">Perjalanan Pendidikan</p>
+                <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="relative max-w-4xl mx-auto">
+                <!-- Center Line -->
+                <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-600 via-cyan-500 to-indigo-600 rounded-full"></div>
+
+                <div class="space-y-12">
+                    <!-- Item 1: Universitas -->
+                    <div class="relative flex flex-col md:flex-row items-center group">
+                        <div class="flex md:w-1/2 justify-start md:justify-end md:pr-8 w-full pl-12 md:pl-0">
+                            <div class="glass p-6 rounded-2xl border border-blue-500/30 w-full hover:shadow-xl hover:border-blue-500 transition-all">
+                                <span class="px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-md mb-2 inline-block">Sekarang</span>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Universitas Negeri Surabaya (UNESA)</h3>
+                                <p class="text-sm font-semibold text-blue-600 dark:text-blue-400 mt-1">S1 Pendidikan Teknologi Informasi</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Menempuh jenjang sarjana dengan penekanan pada pengembangan media pembelajaran komputer, pemrograman, algoritma, dan sistem jaringan.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-lg ring-4 ring-white dark:ring-slate-950 z-10">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="hidden md:block md:w-1/2 md:pl-8"></div>
+                    </div>
+
+                    <!-- Item 2: SMA -->
+                    <div class="relative flex flex-col md:flex-row items-center group">
+                        <div class="hidden md:block md:w-1/2 md:pr-8"></div>
+                        <div class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full bg-cyan-600 text-white flex items-center justify-center font-bold text-sm shadow-lg ring-4 ring-white dark:ring-slate-950 z-10">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <div class="flex md:w-1/2 justify-start md:pl-8 w-full pl-12 md:pl-0">
+                            <div class="glass p-6 rounded-2xl border border-slate-200 dark:border-slate-800 w-full hover:shadow-xl hover:border-cyan-500 transition-all">
+                                <span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold rounded-md mb-2 inline-block">Pendidikan Menengah Atas</span>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">SMA Negeri 1 Rengel</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Menyelesaikan jenjang sekolah menengah atas di Kabupaten Tuban, aktif dalam kegiatan kebudayaan serta keolahragaan sekolah.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: SMP -->
+                    <div class="relative flex flex-col md:flex-row items-center group">
+                        <div class="flex md:w-1/2 justify-start md:justify-end md:pr-8 w-full pl-12 md:pl-0">
+                            <div class="glass p-6 rounded-2xl border border-slate-200 dark:border-slate-800 w-full hover:shadow-xl hover:border-indigo-500 transition-all">
+                                <span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold rounded-md mb-2 inline-block">Pendidikan Menengah Pertama</span>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">SMP Negeri 2 Rengel</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Membangun dasar ilmu pengetahuan, kepemimpinan dasar, dan minat pada bidang olahraga serta seni budaya daerah.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-sm shadow-lg ring-4 ring-white dark:ring-slate-950 z-10">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <div class="hidden md:block md:w-1/2 md:pl-8"></div>
+                    </div>
+
+                    <!-- Item 4: SD -->
+                    <div class="relative flex flex-col md:flex-row items-center group">
+                        <div class="hidden md:block md:w-1/2 md:pr-8"></div>
+                        <div class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full bg-slate-700 text-white flex items-center justify-center font-bold text-sm shadow-lg ring-4 ring-white dark:ring-slate-950 z-10">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <div class="flex md:w-1/2 justify-start md:pl-8 w-full pl-12 md:pl-0">
+                            <div class="glass p-6 rounded-2xl border border-slate-200 dark:border-slate-800 w-full hover:shadow-xl hover:border-slate-500 transition-all">
+                                <span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold rounded-md mb-2 inline-block">Pendidikan Dasar</span>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">SD Negeri Trutup 1</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Mengawali langkah awal pendidikan formal di Desa Trutup, Rengel, Tuban dengan hasil akademis yang memuaskan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION (Pengalaman) -->
+    <section id="pengalaman" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-2">Aktivitas Non-Akademis</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold tracking-tight">Pengalaman Organisasi &amp; Olahraga</p>
+                <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Karawitan Card -->
+                <div class="glass p-8 rounded-3xl border border-slate-200 dark:border-slate-800 relative overflow-hidden group hover:-translate-y-2 transition-all duration-300">
+                    <div class="absolute -right-6 -bottom-6 text-slate-200 dark:text-slate-800 opacity-30 group-hover:opacity-50 transition-opacity">
+                        <i class="fas fa-music text-9xl"></i>
+                    </div>
+                    <div class="w-14 h-14 bg-amber-500/10 text-amber-500 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-compact-disc"></i>
+                    </div>
+                    <span class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider">Ekstrakurikuler SMA</span>
+                    <h3 class="text-2xl font-bold mt-1 mb-4 text-slate-900 dark:text-white">Organisasi Seni Karawitan</h3>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+                        Aktif berpartisipasi dalam ekstrakurikuler Karawitan sewaktu menempuh pendidikan di SMAN 1 Rengel. Pengalaman ini melatih kedisiplinan, harmoni irama, kerjasama tim yang intens, serta bentuk kepedulian dalam melestarikan warisan budaya musik Jawa.
+                    </p>
+                    <ul class="space-y-2 text-xs text-slate-500 dark:text-slate-400">
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-amber-500"></i> Latihan harmoni instrumen musik tradisional</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-amber-500"></i> Pentas seni sekolah dan acara kebudayaan</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-amber-500"></i> Membangun rasa kebersamaan & ketelitian tinggi</li>
+                    </ul>
+                </div>
+
+                <!-- Volleyball Card -->
+                <div class="glass p-8 rounded-3xl border border-slate-200 dark:border-slate-800 relative overflow-hidden group hover:-translate-y-2 transition-all duration-300">
+                    <div class="absolute -right-6 -bottom-6 text-slate-200 dark:text-slate-800 opacity-30 group-hover:opacity-50 transition-opacity">
+                        <i class="fas fa-volleyball-ball text-9xl"></i>
+                    </div>
+                    <div class="w-14 h-14 bg-blue-500/10 text-blue-500 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <span class="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">Komunitas Olahraga</span>
+                    <h3 class="text-2xl font-bold mt-1 mb-4 text-slate-900 dark:text-white">Tim Bola Voli Desa</h3>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+                        Menjadi bagian dari tim bola voli di tingkat desa. Berkompetisi dalam turnamen lokal dan rutin berolahraga untuk mengasah kekuatan fisik, ketahanan mental, komunikasi lapangan, serta sportifitas antar sesama pemain.
+                    </p>
+                    <ul class="space-y-2 text-xs text-slate-500 dark:text-slate-400">
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-blue-500"></i> Komunikasi & koordinasi strategi lapangan</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-blue-500"></i> Menjaga kebugaran & stamina fisik secara rutin</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-blue-500"></i> Partisipasi aktif turnamen persahabatan antar desa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION (Keahlian) -->
+    <section id="keahlian" class="py-20 relative bg-slate-100/50 dark:bg-slate-900/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-2">Kompetensi</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold tracking-tight">Keahlian &amp; Ketrampilan</p>
+                <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Technical Skills -->
+                <div class="glass p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800">
+                    <h3 class="text-xl font-bold mb-6 text-slate-900 dark:text-white flex items-center gap-3">
+                        <i class="fas fa-code text-blue-500"></i> Keahlian Teknis &amp; Akademis
+                    </h3>
+
+                    <div class="space-y-5">
+                        <!-- Skill Item 1 -->
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span class="text-slate-700 dark:text-slate-300">Dasar Pemrograman & Web (HTML/CSS/JS)</span>
+                                <span class="text-blue-600 dark:text-blue-400">80%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                                <div class="bg-blue-600 h-2.5 rounded-full w-[80%] transition-all duration-1000"></div>
+                            </div>
+                        </div>
+
+                        <!-- Skill Item 2 -->
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span class="text-slate-700 dark:text-slate-300">Teknologi & Media Pembelajaran Digital</span>
+                                <span class="text-blue-600 dark:text-blue-400">85%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                                <div class="bg-cyan-500 h-2.5 rounded-full w-[85%] transition-all duration-1000"></div>
+                            </div>
+                        </div>
+
+                        <!-- Skill Item 3 -->
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span class="text-slate-700 dark:text-slate-300">IT Hardware & Software Support</span>
+                                <span class="text-blue-600 dark:text-blue-400">75%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                                <div class="bg-indigo-600 h-2.5 rounded-full w-[75%] transition-all duration-1000"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Soft Skills & Cultural -->
+                <div class="glass p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800">
+                    <h3 class="text-xl font-bold mb-6 text-slate-900 dark:text-white flex items-center gap-3">
+                        <i class="fas fa-brain text-blue-500"></i> Soft Skills &amp; Kemampuan Non-Teknis
+                    </h3>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="p-4 bg-slate-100/80 dark:bg-slate-900/80 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-start gap-3">
+                            <i class="fas fa-users text-blue-500 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-800 dark:text-slate-200">Kerjasama Tim</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Solid dalam grup olahraga maupun tim akademis</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-slate-100/80 dark:bg-slate-900/80 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-start gap-3">
+                            <i class="fas fa-[#06b6d4] fa-comments text-cyan-500 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-800 dark:text-slate-200">Komunikasi</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Komunikasi efektif &amp; bersahabat</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-slate-100/80 dark:bg-slate-900/80 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-start gap-3">
+                            <i class="fas fa-music text-amber-500 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-800 dark:text-slate-200">Seni Karawitan</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Apresiasi &amp; keahlian seni budaya</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-slate-100/80 dark:bg-slate-900/80 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-start gap-3">
+                            <i class="fas fa-lightbulb text-indigo-500 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-800 dark:text-slate-200">Adaptabilitas</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Cepat beradaptasi dengan teknologi baru</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION (Kontak) -->
+    <section id="kontak" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-2">Hubungi Saya</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold tracking-tight">Mari Berdiskusi &amp; Bekerjasama</p>
+                <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Direct Info -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="glass p-6 rounded-3xl border border-slate-200 dark:border-slate-800 flex items-center gap-4">
+                        <div class="w-12 h-12 bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-2xl flex items-center justify-center text-xl shrink-0">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold text-slate-400 uppercase">Email</span>
+                            <p class="font-semibold text-slate-800 dark:text-slate-200 text-sm sm:text-base">wahyumps710@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div class="glass p-6 rounded-3xl border border-slate-200 dark:border-slate-800 flex items-center gap-4">
+                        <div class="w-12 h-12 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-2xl flex items-center justify-center text-xl shrink-0">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold text-slate-400 uppercase">WhatsApp / Telepon</span>
+                            <p class="font-semibold text-slate-800 dark:text-slate-200 text-sm sm:text-base">+62 823-3585-3088</p>
+                        </div>
+                    </div>
+
+                    <div class="glass p-6 rounded-3xl border border-slate-200 dark:border-slate-800 flex items-center gap-4">
+                        <div class="w-12 h-12 bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-2xl flex items-center justify-center text-xl shrink-0">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold text-slate-400 uppercase">Domisili</span>
+                            <p class="font-semibold text-slate-800 dark:text-slate-200 text-sm sm:text-base">Tuban, Jawa Timur</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-7 glass p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800">
+                    <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="senderName" class="block text-xs font-semibold uppercase text-slate-500 dark:text-slate-400 mb-1">Nama Lengkap</label>
+                                <input type="text" id="senderName" required placeholder="Masukkan nama Anda" class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+                            </div>
+                            <div>
+                                <label for="senderEmail" class="block text-xs font-semibold uppercase text-slate-500 dark:text-slate-400 mb-1">Email Anda</label>
+                                <input type="email" id="senderEmail" required placeholder="nama@email.com" class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="subject" class="block text-xs font-semibold uppercase text-slate-500 dark:text-slate-400 mb-1">Subjek Pesan</label>
+                            <input type="text" id="subject" required placeholder="Judul pesan atau topik pembicaraan" class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-xs font-semibold uppercase text-slate-500 dark:text-slate-400 mb-1">Isi Pesan</label>
+                            <textarea id="message" rows="4" required placeholder="Tuliskan pesan Anda di sini..." class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-lg shadow-blue-600/30 transition-all flex items-center justify-center gap-2">
+                            <i class="fas fa-paper-plane"></i> Kirim Pesan Sekarang
+                        </button>
+                    </form>
+                    <!-- Form Notification Banner -->
+                    <div id="formAlert" class="hidden mt-4 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs font-semibold text-center">
+                        Terima kasih! Pesan Anda telah berhasil disimulasikan dan terkirim.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-8 border-t border-slate-200 dark:border-slate-900 text-center text-xs text-slate-500 dark:text-slate-400">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>&copy; 2026 Wahyu Moch Panca Swadana. S1 Pendidikan Teknologi Informasi - UNESA.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 1. Dark/Light Theme Toggle Handler
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                themeIcon.classList.remove('fa-sun', 'text-amber-400');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun', 'text-amber-400');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // 2. Mobile Navigation Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 3. Typing Effect Animation
+        const typingTextElement = document.getElementById('typingText');
+        const phrases = [
+            "Mahasiswa S1 Pend. Teknologi Informasi",
+            "Tech Enthusiast & Learner",
+            "Penggiat Seni Karawitan",
+            "Atlet Bola Voli Desa"
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typingTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingTextElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 40 : 80;
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typeSpeed = 1800; // Pause at full phrase
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 400;
+            }
+
+            setTimeout(typeEffect, typeSpeed);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            typeEffect();
+        });
+
+        // 4. Contact Form Handler Simulation
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const alertBox = document.getElementById('formAlert');
+            const form = document.getElementById('contactForm');
+            
+            alertBox.classList.remove('hidden');
+            form.reset();
+
+            setTimeout(() => {
+                alertBox.classList.add('hidden');
+            }, 5000);
+        }
+
+        // 5. Download CV Function Simulation
+        function downloadCV() {
+            const cvText = "Portofolio & Resume: Wahyu Moch Panca Swadana\nS1 Pendidikan Teknologi Informasi - UNESA\nLahir: Tuban, 07 Oktober 2007";
+            const blob = new Blob([cvText], { type: 'text/plain;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'CV_Wahyu_Moch_Panca_Swadana.txt';
+            link.click();
+        }
+    </script>
+</body>
+</html>
